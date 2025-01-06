@@ -47,7 +47,6 @@ export default function DetailedTitle() {
       try {
         setTitle(await GetTitleById(params.id));        
   
-        setSimliarMovies(await GetSimilarMovies(params.id));
         let tempRating = await GetRatingById(params.id);
         setRating(tempRating);
           
@@ -59,8 +58,16 @@ export default function DetailedTitle() {
         console.error('Error fetching data:', error);
       }
     };
+    const fetchSimilarTitle = async () => {
+      try{
+        setSimliarMovies(await GetSimilarMovies(params.id));
+      } catch (error){
+        console.log("Error when fethcing similar movies");
+      }
+    }
 
     fetchTitle();
+    fetchSimilarTitle(); // it would show error message when failed to get similar movies, though should only show it when fethcing title fails
   }, [params.id, token]);
   
 
@@ -179,9 +186,9 @@ export default function DetailedTitle() {
     else{
       setShowNotLoggedIn(true);
       setTimeout(() => {setShowNotLoggedIn(false)}, 2500);
+    }
   }
 
-  }
   if(errorMessage){
     return (
       <div className="center-div">
@@ -326,7 +333,7 @@ export default function DetailedTitle() {
                       <TitleSearchCard title={item} key={item.titleId}/>
                       {item?.genres?.map((genre) => 
                         <div style={{display: "inline", marginLeft: "3px"}} key={genre}>
-                          <Button onClick={() => navigate("/genres/" + genre.id)} variant={"secondary"} className="pills">{genre}</Button>
+                          <Badge bg="secondary" className="pills">{genre}</Badge>
                         </div>
                       )}
                   </div>)
@@ -335,7 +342,7 @@ export default function DetailedTitle() {
           </div>
           </Container>
         }
-
+          
         {showRatingModal &&      
           <div className="modal show" style={{ display: 'block', position: 'fixed', marginTop: "300px" }}>
             <Modal.Dialog >
