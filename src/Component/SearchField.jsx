@@ -99,9 +99,9 @@ export default function SearchField(){ //SearchComponent present in Navigation b
                   )}
                 </select> 
                 <label for="rating">Rating</label>
-                <input onChange={(e) => setChosenRating(e.target.value)} type='number' placeholder='rating'></input>
-                <input onChange={(e) => setChosenStartYear(e.target.value)} type='number' placeholder='startYear'></input>
-                <input onChange={(e) => setChosenEndYear(e.target.value)} type='number' placeholder='endYear'></input>
+                <input onChange={(e) => setChosenRating(e.target.value === "" ? undefined : e.target.value)} type='number' placeholder='rating'></input>
+                <input onChange={(e) => setChosenStartYear(e.target.value === "" ? undefined : e.target.value)} type='number' placeholder='startYear'></input>
+                <input onChange={(e) => setChosenEndYear(e.target.value === "" ? undefined : e.target.value)} type='number' placeholder='endYear'></input>
               </Dropdown.Menu>
             </Dropdown>
           </Col>
