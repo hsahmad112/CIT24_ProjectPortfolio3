@@ -93,7 +93,8 @@ export default function SearchField(){ //SearchComponent present in Navigation b
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <label for="genres">Genres</label>
-                <select name="genres" onChange={(e) => setChosenGenre(e.target.value)}>
+                <select name="genres" onChange={(e) => setChosenGenre(e.target.value === "choose" ? undefined : e.target.value)}>
+                  <option style={{color: "gray"}}>choose</option>
                   {genres?.map((item, index) =>
                     <option value={index + 1} key={item.name}>{item.name}</option>
                   )}
