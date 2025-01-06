@@ -7,9 +7,9 @@ import {GetGenres} from '../Service/GenreService';
 
 export default function SearchField(){ //SearchComponent present in Navigation bar
     //States for default search functionality
-    const {searchType, setSearchType } = useUser();
+    const {searchType, setSearchType } = useUser(); //Global state, searchtype state is same for all components
     const [searchQuery, setSearchQuery] = useState("");
-    const [searchCategory, setSearchCategory] = useState("Everything");
+    const [searchCategory, setSearchCategory] = useState("Everything"); //Could be consolidated with searchType, to reduce reduncency in states
 
     //States for advanced search functionality, with multiple parameters
     const [chosenGenre, setChosenGenre] = useState(undefined);
@@ -41,7 +41,7 @@ export default function SearchField(){ //SearchComponent present in Navigation b
     
     function handleType(e){ //Helper function for setting what the user search for: Everything, Person and Title
         const newSelectedCategory = e.target.getAttribute('name');
-        const newSelectedType = e.target.getAttribute('str');
+        const newSelectedType = e.target.getAttribute('str'); //Another example of redundency as result of two states for "search type"
         setSearchType(newSelectedType);
         setSearchCategory(newSelectedCategory);
         setPlaceholderText("Search for " + newSelectedCategory); 
@@ -112,7 +112,7 @@ export default function SearchField(){ //SearchComponent present in Navigation b
                   {searchCategory}
                 </Dropdown.Toggle>
 
-                <Dropdown.Menu>
+                <Dropdown.Menu> {/* No reason to define parameter str and name, could instead just pass strings as prop to handleType function*/}
                   <Dropdown.Item onClick = {handleType} str="everything" name= "Everything" >Everything</Dropdown.Item>
                   <Dropdown.Item onClick = {handleType} str="titles" name= "Titles" >Title</Dropdown.Item>
                   <Dropdown.Item onClick = {handleType} str="persons" name="Persons">Person</Dropdown.Item>

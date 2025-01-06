@@ -18,7 +18,7 @@ export default function NavigationBar(){ //Navbar component
             <div className='user-menu'>
               <Nav.Item>
                 <Navbar.Text>
-                  <p className='user-menu' style={{color:"white", display: "inline !important", width: "100px"}}>Hello {userName} </p>
+                  <p className='user-menu' style={{color:"white", display: "inline !important", width: "100px"}}>Hello {userName} </p> {/* display and width overrided by user-menu in index.css*/}
                   <Dropdown style={{display: "inline-block"}}>
                       <Dropdown.Toggle className='advanced-dropdown' variant="success" id="dropdown-basic">
                         <i className="bi bi-list" style={{color: "white"}}></i>

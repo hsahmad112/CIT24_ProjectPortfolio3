@@ -10,14 +10,14 @@ export default function CustomCarousel ({ items }) { //Component with logic to d
   const itemCount = items.length; //Num of titles to be displayed
 
   // Calculate indices for the 5 visible cards
-  const visibleItems = Array.from({ length: 5 }, (_, i) => (currentIndex + i) % itemCount);
-
+  const visibleItems = Array.from({ length: 5 }, (_, i) => (currentIndex + i) % itemCount); // parameter "_", is called this to follow JS convention of unused variable
+                                                                                  //Use of modolus to make "circular loop", just like how a clock work
   const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % itemCount);
   };
 
   const handlePrev = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + itemCount) % itemCount);
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + itemCount) % itemCount); 
   };
 
   return (
