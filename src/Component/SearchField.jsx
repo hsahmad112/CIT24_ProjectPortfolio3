@@ -49,6 +49,7 @@ export default function SearchField(){ //SearchComponent present in Navigation b
 
     async function handleSubmit(e){
         e.preventDefault();
+        e.target.reset();
         const body = //Object prop containing search parameters, forwarded to SearchPreview and SearchResult
         { id: null, 
             searchTerm: searchQuery, 
@@ -73,6 +74,7 @@ export default function SearchField(){ //SearchComponent present in Navigation b
             setChosenStartYear(undefined);
             setChosenEndYear(undefined);
             setChosenRating(undefined);
+            
 
             navigate('/search', {
             state: {result, searchType, body }, //Pass state when navigating to /search
