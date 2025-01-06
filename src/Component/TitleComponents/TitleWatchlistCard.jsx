@@ -2,15 +2,15 @@ import { useEffect, useState } from 'react';
 import { Card, Button, ButtonGroup } from 'react-bootstrap';
 import { useNavigate } from "react-router";
 import { GetTitleBackdrop } from '../../Service/TitleService';
-import { DeleteTitleBookmarksById} from '../../Service/BookmarkService';
+import { DeleteTitleBookmarksById} from '../../Service/BookmarkService'; //Not used anymore
 import { GetHeader } from '../../Store/Store';
 import { Trash } from 'react-bootstrap-icons';
 
 export default function TitleWatchlistCard({data, onDelete}){ 
-    const [titleBookmark, setTitleBookmark] = useState(null); //Title photo state       
+    const [titleBookmark, setTitleBookmark] = useState(null); //Title photo state, name is unclear.        
     const imageUrl = process.env.REACT_APP_TMDB_API_IMAGE_LINK;    
     const navigate = useNavigate();
-    let headers = GetHeader();
+    let headers = GetHeader(); //Not used anymore
 
     useEffect(() =>{
         const getTitleBookmark = async () => {
@@ -28,7 +28,7 @@ export default function TitleWatchlistCard({data, onDelete}){
         <Card style={{ width: '16rem', margin: '10px', padding: '0px'}}>
             <Card.Img 
                 variant="top" 
-                src={titleBookmark !== null && titleBookmark !== undefined ? imageUrl + titleBookmark : "/no-image-2.jpg" }
+                src={titleBookmark !== null && titleBookmark !== undefined ? imageUrl + titleBookmark : "/no-image-2.jpg" } //no-image-2 is broad format
                 onClick={()=> navigate("/title/" + data.titleId)}/>
             <Card.Body>
                 <Card.Title>{data.titlePrimaryTitle} </Card.Title>

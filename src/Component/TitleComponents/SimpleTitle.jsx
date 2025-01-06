@@ -16,8 +16,23 @@ export default function SimpleTitle({title, navigate, keyID}) { //Title componen
         genresString += " and " + genres[index];
         break;
       }
-      genresString += genres[index] + ", ";
+      genresString += genres[index] + ", "; 
     }
+      //If no Oxford Comma is wanted, these could also do:
+      
+      //genresString = genresString.replace(/,(?=[^,]*$)/, ''); //Match comma, negate positive lookahead (that is comma followed by another comma), replace last comma with empty string  
+      
+      // OR:
+
+      //   if (index === total - 1 && total > 1) { // For the last genre in the list when there are multiple genres
+      //     genresString += " and " + genres[index];
+      // } else if (total > 1 && index < total - 2) { // For all genres except the last two in the list
+      //     genresString += genres[index] + ", ";
+      // } else if (index === total - 2) { // For the second last genre in the list
+      //     genresString += genres[index];
+      // } else { // For a single genre or the only genre in the list
+      //     genresString += genres[index];
+      // }
 
     return genresString;
   }

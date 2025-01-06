@@ -1,4 +1,4 @@
-import {Card, CardTitle} from 'react-bootstrap'
+import {Card, CardTitle} from 'react-bootstrap' //CardTitle not used.
 
 export default function RatingProfileCard({title, navigate}){
 

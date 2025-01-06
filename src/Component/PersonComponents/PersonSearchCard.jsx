@@ -13,7 +13,7 @@ export default function PersonSearchCard ({person}){
         async function getBackdrop(){
             const res = (await GetPersonBackdrop(person.personId));
             if(res?.profile_path) { //Needs to be nullable, otherwise res might be undefined (because we await from GetPersonBackdrop)
-                setBackdropUrl(res.profile_path);
+                setBackdropUrl(res.profile_path); //Could be ternary, BUT then it introduces unneccesary "else statement"
             }
         } 
         getBackdrop();

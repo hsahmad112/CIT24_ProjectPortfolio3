@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Card, Button, ButtonGroup } from 'react-bootstrap';
 import { useNavigate } from "react-router";
 import { GetPersonBackdrop } from '../../Service/PersonService';
-import { DeletePersonBookmarksById } from '../../Service/BookmarkService';
+import { DeletePersonBookmarksById } from '../../Service/BookmarkService'; //Not used anymore
 import { GetHeader } from '../../Store/Store';
 import { Trash } from 'react-bootstrap-icons'; 
 
@@ -10,7 +10,7 @@ export default function PersonWatchlistCard({data, onDelete}){
     const [personBookmark, setPersonBookmark] = useState(null); //Person photo state
     const imageUrl = process.env.REACT_APP_TMDB_API_IMAGE_LINK;    
     const navigate = useNavigate();
-    let headers = GetHeader();
+    let headers = GetHeader(); //not used anymore
 
     useEffect(() =>{
         const getPersonBookmark = async () => {
