@@ -3,6 +3,9 @@ import { useLocation } from "react-router";
 import { GetHeader, useUser } from "../../Store/Store";
 import { useEffect} from 'react';
 import { PaginationForSearch } from "../../Helpers/URLHelper";
+//SearchResult should ideally not handle searching, but only displaying search results.
+//Ideally a "SearchService.js" would handle fetching results based on inputs sent from SearchField, then represented by SearchResult
+
 
 //Function that handles returning search results. 
 //Takes searchType (Everything/Person/Title), body object from the SearchField
@@ -32,7 +35,7 @@ import { PaginationForSearch } from "../../Helpers/URLHelper";
             }
             else {
                 console.warn("No persons found from search. Status code: ", personResponse.status); //Including HTTP status code in warning 
-                personData = null;
+                personData = null; //Possibly not doing anything
             }
 
             if(titleResponse.ok){
@@ -41,17 +44,17 @@ import { PaginationForSearch } from "../../Helpers/URLHelper";
             }
             else {
                 console.warn("No titles found from search. Status code: ", titleResponse.status)
-                titleData = null;
+                titleData = null; //Possibly not doing anything
             }
-            //returns object containing results containing persons and titels (possibly empty)
+            //returns object containing results containing persons and titels (possibly empty) //<-- wrong, the data arrays would prossibly be null
             return{persons: personData, titles: titleData};
             
         default:
-            const urlType = searchType === "persons" ? fetchUrlPerson: fetchUrlTitle;
+            const urlType = searchType === "persons" ? fetchUrlPerson: fetchUrlTitle; //should not rely on ternary as logic could be handled by switch case - Would make it easier for future implementation
             const response = await fetch(baseUrl + searchType + urlType, {headers});
             if(response.ok){
                 const data = await response.json();
-                return {persons: data, titles: data}; //Should prop find a better way, than duplicating data in persons/titles....
+                return {persons: data, titles: data}; //Should props find a better way, than duplicating data in persons/titles.... //relying on ternary logic above, results this rather confusing object being returned to SearchField 
             }
             else {
                 console.error(`Could not fetch ${searchType}`, response.status)
@@ -74,13 +77,15 @@ export async function AdvancedSearch(body) {
     const fetchAdvancedUrl = "/advanced-search?searchTerm=" + searchTerm + "&genreId=" + genreId + "&startYear=" + startYear + "&endYear=" + endYear + "&rating=" + rating + paging;
     
     //console.log(fetchAdvancedUrl);
+    //no error handling being done
     const titleResponse = await fetch(baseUrl  + "titles" + fetchAdvancedUrl, {headers});
     const response = await titleResponse.json();
     return{titles: response};   
 }
 
 export default function SearchResult(){
-    //location gives us access to states passed through navigation.js 
+    //location gives us access to states passed through navigation.js  
+    // above is wrong - passed through SearchField USING navigate()
     const location = useLocation();
 
     const {token, checkToken} = useUser();

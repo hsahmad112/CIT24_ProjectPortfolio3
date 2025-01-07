@@ -33,7 +33,7 @@ export default function Homepage(){
     );
   }
   else{
-    return <b>could not find any titles</b>;
+    return <b>could not find any titles</b>; // we might likely never arrive to this, as titles is instantiated as an empty array, which always is true. 
   }
       
 }

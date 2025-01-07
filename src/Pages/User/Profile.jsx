@@ -58,7 +58,7 @@ export default function Profile(){
   { page: personBookmarkPage,  
     pageSize: pageSize  
   };
-
+  //Same logic for Rating pagenation is reused for Bookmarks, could be made into a method to lessen clutter and ease readability
   useEffect(() =>{ //Effect for Rating pagenation
     const ratings = [];
         
@@ -81,7 +81,7 @@ export default function Profile(){
     setRatingPage(page);
   };
 
-  useEffect(() =>{
+  useEffect(() =>{ //Effect for fetching ratings on page change 
     const fetchRatings = async () => {        
       const ratings = await GetAllRatings(ratingQueryParams);
     
@@ -105,9 +105,10 @@ export default function Profile(){
     fetchRatings();
   }, [ratingPage]);
 
+
   useEffect(() =>{ //Effect for Title Bookmark pagenation
     const titleBookmarks = [];
-          
+        
     for (let number = 0; number <= titleBookmarkTotalPages-1; number++) {
       titleBookmarks.push(
         <Pagination.Item
