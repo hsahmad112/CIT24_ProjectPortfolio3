@@ -11,8 +11,8 @@ export default function SearchPreview({ componentType, body, searchResult }) { /
   const [page, setPage] = useState(body.page); //Current page
   const [errorMessage, setErrorMessage] = useState("");
 
-  
-  function TitleUrlGenerator(page){ //Helper method for generating titles, uses prop object from SearchField  
+  //Helper method for generating titles, uses prop object from SearchField  
+  function TitleUrlGenerator(page){ // Ambiguous parameter name as it represends the next page (page state + 1)
     const searchTerm = body.searchTerm === undefined ? "" : body.searchTerm;
     const genreId = body.genreId === undefined ? "" : body.genreId;
     const startYear = body.startYear === undefined ? "" : body.startYear;
@@ -37,14 +37,14 @@ export default function SearchPreview({ componentType, body, searchResult }) { /
   async function LoadMore() { //fetches more SearchCards (if any)
     if(componentType === "personType"){
       const type = "persons";
-      const nextPage = page + 1; 
+      const nextPage = page + 1
 
       const personResponse = await fetch(baseUrl + type + PersonUrlGenerator(nextPage), {});
       const data = (await personResponse.json()).entities;
 
       if(data) {
         setResult([...result, ...data]);
-        setPage(x => parseInt(x) + 1); // is it not supposed to set the state and be used before the next render if written like so?
+        setPage(x => parseInt(x) + 1);  // Use nextPage instead of the lambda expression
       }
       else {
         setErrorMessage("No more results");

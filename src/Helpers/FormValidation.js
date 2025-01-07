@@ -3,7 +3,7 @@
 // inspiration from: https://stackoverflow.com/questions/19605150/regex-for-password-must-contain-at-least-eight-characters-at-least-one-number-a   
 
 const passwordRegex = /^(?=.*\d)(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-[\]{};':"\\|,.<>\/?]).{8,}$/ 
-const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; 
 
 
 export const validatePassword = (password, setErrorMessage, setIsFieldValid) => {
@@ -71,7 +71,7 @@ function isFieldEmpty(field, setIsFieldValid, setErrorMessage, errorKey){
         }));
         return true; //field empty, remove error message
     }
-        return false; //field not empty, returns false
+    return false; //field not empty, returns false
 }
 
 
