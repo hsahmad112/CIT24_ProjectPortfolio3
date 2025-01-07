@@ -113,7 +113,7 @@ export default function DetailedPerson(){
         let primaryProfessions = <>{person.primaryProfessions.map((profession, index) => <Badge bg="secondary" className="pills" key={index}>{profession}</Badge>)}</>
     
 
-        return (      
+        return ( // refactoring into seperate components (bookmarks)
             <div className="container">
                 <Container fluid="true">
 

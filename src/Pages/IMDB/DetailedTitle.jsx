@@ -200,7 +200,7 @@ export default function DetailedTitle() {
   }
   else{
     // title only have the person name, not the id, so can't use them to find the person, the name might overlap
-    return (
+    return ( // refactoring into seperate components (bookmarks, rating and similar titles)
       <div className="container">
           <Container fluid="true">
             <Row style={{marginTop: "10px", marginBottom: "10px"}}>
