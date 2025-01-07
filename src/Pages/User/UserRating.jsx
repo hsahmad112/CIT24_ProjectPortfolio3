@@ -14,7 +14,7 @@ export default function UserRating(){
     const [userRatings, setUserRatings] = useState([]);
     const [errorMessage, setErrorMessage] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
-    const [timer, setTimer] = useState(5);
+    const [timer, setTimer] = useState(5); //Used throughout the whole application - same number, could be passed from Store.js
 
     //this sorting feature exists only on the frontend- ideally this would be performed on the backend due to pagination.
     const [sortingOrder, setSortingOrder] = useState("rating"); //Sort order will default to rating
@@ -90,14 +90,16 @@ export default function UserRating(){
                 countDown = setInterval(() => {
                     setTimer((t) => {
                         if(t <=0){
-                            clearInterval(countDown); //Stops countDown timer from continously running
+                            clearInterval(countDown); //This is unnecesary, as useEffect cleanUp function handles the clearInterval
                             logout(cookieExpired);
                             return 0; //timer state is set to 0
                         }
+                        console.log("t er: " + t)
                         return t - 1; //aka subtract 1 sec from timer
                     })
                 }, 1000);  
         }    
+        
         return () => clearInterval(countDown); //Stops timer from continuing to run, after useEffect has executed   
 
     }, [errorMessage]);
@@ -165,7 +167,7 @@ export default function UserRating(){
                 );
                     
                 default:
-                    console.log("failed to do sorting order for ratings..");
+                    console.log("failed to do sorting order for ratings.."); //No, default happens when no case was matched.
                     break;
             } 
         })      

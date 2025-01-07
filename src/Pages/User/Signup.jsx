@@ -59,6 +59,7 @@ export default function Signup(){
     try{  
       const response = await PostUser(jsonBody);
       if(response.status === 200) login(response.data);
+      //else only exist for console.error message to dev
       else
         console.error("credentials passed the form check, but got error. Email might be taken");   
     }
@@ -68,8 +69,8 @@ export default function Signup(){
 
       setErrorMessage((prevState) => ({
         ...prevState,
-        genericError: 'An error occurred. Please try again later.'
-      }));
+        genericError: 'An error occurred. Please try again later.' 
+      }));  //Generic error is not displayed, but shows potential for future development in terms providing specific error messages a
     }      
   }
    

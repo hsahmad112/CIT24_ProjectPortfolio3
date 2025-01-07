@@ -131,7 +131,7 @@ export default function WatchList(){
             countDown = setInterval(() => {
                 setTimer((t) => {
                     if(t <=0){
-                        clearInterval(countDown); //Stops countDown timer from continously running
+                        clearInterval(countDown); //Stops countDown timer from continously running //as in UserRating this line is redundant 
                         logout(cookieExpired);
                         return 0; //timer state is set to 0
                     }

@@ -6,7 +6,6 @@ export function getCookieValue(name) {
   const cookies = document.cookie.split(';'); //Splits cookie string from document, into substrings seperated by ";", and returns array
   for (let cookie of cookies) {
     cookie = cookie.trim(); //removes whitespace
-
     if (cookie.startsWith(`${name}=`)) { //true if substring equals specified name, e.g. "FirstName"
       return cookie.substring(name.length + 1);
        // Returns substring, from index at length of name +1. E.g. Cookie name string is FirstName,
@@ -45,6 +44,7 @@ export const UserProvider = ({ children }) => {
 
   const login = (userData) => {
     const {token, firstName} = userData;
+    console.log(userData);
     console.log(`Setting userName: ${firstName}`);
       
     const expireTime = new Date();
